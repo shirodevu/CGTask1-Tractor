@@ -24,5 +24,14 @@ public class Leaf {
     public void draw(Graphics2D g) {
         g.setColor(leafColor);
         g.fillOval(x - leafR, y +leafR, leafR,leafR * 2);
+
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

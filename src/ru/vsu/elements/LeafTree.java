@@ -1,11 +1,12 @@
 package ru.vsu.elements;
 
-import ru.vsu.AppleUtils;
 import ru.vsu.LeafUtils;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static ru.vsu.elements.Leaf.random;
 
 public class LeafTree implements SomeTree {
     private static final Color DEFAULT_CROWN_COLOR = new Color(102, 168, 82);
@@ -71,7 +72,13 @@ public class LeafTree implements SomeTree {
         g.fillOval(x - treeCrownR, y - treeCrownR, treeCrownR, treeCrownR + treeCrownR);
 
         for (Leaf leaf : leaves) {
+            double someNum = random.nextInt(50);
+            g.rotate(Math.toRadians(someNum), leaf.getX(), leaf.getY());
             leaf.draw(g);
+            g.rotate(-Math.toRadians(someNum), leaf.getX(), leaf.getY());
+
+            // g.rotate(Math.toRadians(100));
+
         }
     }
 
