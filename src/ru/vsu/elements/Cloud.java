@@ -1,6 +1,7 @@
 package ru.vsu.elements;
 
 import java.awt.*;
+import java.util.List;
 
 public class Cloud {
     private static final Color DEFAULT_CLOUD_COLOR = new Color(250, 238, 238);
@@ -20,8 +21,7 @@ public class Cloud {
 
     public void draw(Graphics2D g) {
         g.setColor(cloudColor);
-        g.fillOval(x - width, y - height, width, height);
-        g.fillOval(x - width, y - height, width, height);
+        g.fillOval(x - 2 * width, y - height, width, height);
     }
 
     public int getX() {

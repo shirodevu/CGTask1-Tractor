@@ -1,25 +1,28 @@
 package ru.vsu.elements;
 
-
 import java.awt.*;
+import java.util.Random;
+
 
 public class Leaf {
-    private static final Color DEFAULT_LEAF_COLOR = new Color(32, 84, 18);
+    static final Random random = new Random();
+    private static final Color DEFAULT_TREE_COLOR = new Color(78, 128 + random.nextInt(50), 48 + random.nextInt(50));
     private final int x;
     private final int y;
     private final int leafR;
-    private final Color leafColor;
+
+    private Color leafColor;
 
 
-    public Leaf(int x, int y, int leafR) {
+    public Leaf(int x, int y, int leafR, Color leafColor) {
         this.x = x;
         this.y = y;
         this.leafR = leafR;
-        this.leafColor = DEFAULT_LEAF_COLOR;
+        this.leafColor = leafColor;
     }
 
     public void draw(Graphics2D g) {
         g.setColor(leafColor);
-        g.fillOval(x - leafR / 2, (int) (y + leafR - 20), leafR, leafR * 2);
+        g.fillOval(x - leafR, y +leafR, leafR,leafR * 2);
     }
 }

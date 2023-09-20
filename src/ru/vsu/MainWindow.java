@@ -7,7 +7,7 @@ public class MainWindow extends JFrame {
     private final DrawPanel dp;
 
     public MainWindow() throws HeadlessException {
-        dp = new DrawPanel();
+        dp = new DrawPanel(40);
         this.add(dp);
     }
 }

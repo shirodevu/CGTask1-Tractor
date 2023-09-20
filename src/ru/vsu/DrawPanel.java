@@ -4,35 +4,56 @@ import ru.vsu.elements.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.util.Random;
 
-public class DrawPanel extends JPanel {
-    private static Cloud c1, c2;
-    private static Wheel w1, w2, w3, w4;
-    private static Tree t1, t2;
+public class DrawPanel extends JPanel implements ActionListener {
+    static final Random random = new Random();
+    private ArrayList<Cloud> clouds;
+    private java.util.List<SomeTree> trees = new ArrayList<>();
+    private Wheel w1, w2, w3, w4;
+    private AppleTree t1;
+    private LeafTree t2;
+    private Sun s;
+    private Timer timer;
+    private int ticksFromStart = 0;
+    private Cloud c2;
 
-    private static Sun s;
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        if (e.getSource() == timer) {
+            repaint();
+            ++ticksFromStart;
+        }
+    }
 
-    // private Apple a2;
-    // private Leaf l2;
+    public DrawPanel(final int timerDelay) {
+        clouds = new ArrayList<>();
+        c2 = new Cloud(700, 190, 160, 120);
+        clouds.add(c2);
+        for (int i = 0; i <= 20; i ++){
+            Cloud cloud = new Cloud(200 + random.nextInt(100), 100 + random.nextInt(100), 160 +
+                    random.nextInt(50), 100 + random.nextInt(50));
+            clouds.add(cloud);
+        }
 
-
-
-    public DrawPanel() {
-        c1 = new Cloud(200, 200, 160, 100);
-        c2 = new Cloud(800, 190, 200, 140);
+        timer = new Timer(timerDelay, this);
+        timer.start();
 
         w1 = new Wheel(230, 430, 40, 10);
         w2 = new Wheel(360, 430, 40, 10);
         w3 = new Wheel(495, 420, 50, 15);
         w4 = new Wheel(680, 430, 40, 10);
 
-        t1 = new Tree(800, 190, 60, 10, 20);
-        t2 = new Tree(120, 220, 60, 10, 20);
+        t1 = new AppleTree(800, 190, 60, 10, 20);
+        t2 = new LeafTree(120, 220, 70, 5, 20);
 
         s = new Sun(250, 100, 40, 70, 40);
-
-        // coordinate sun 800, 190, 130, 140
     }
+
+
 
     @Override
     public void paint(Graphics gr) {
@@ -41,13 +62,16 @@ public class DrawPanel extends JPanel {
         g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         drawBackground(g);
+        for (Cloud cloud : clouds) {
+            int xcloud = cloud.getX();
+            xcloud += 1;
+            cloud.setX(xcloud);
+            cloud.draw(g);
+        }
+        drawHay(g);
         s.draw(g);
-        drawCloud(g);
         drawTractor(g);
-        //   drawAppleTree(g);
-        drawLeafTree(g);
-
-
+        drawTree(g);
     }
 
     private static void drawBackground(Graphics2D g) {
@@ -68,7 +92,7 @@ public class DrawPanel extends JPanel {
         g.fillRect(300, 180, 5, 200);
     }
 
-    private static void drawTractor(Graphics2D g) {
+    private void drawTractor(Graphics2D g) {
         // tractor body
         g.setColor(new Color(66, 133, 180));
         g.fillRoundRect(170, 310, 250, 120, 10, 10);
@@ -88,17 +112,21 @@ public class DrawPanel extends JPanel {
         w3.draw(g);
         w4.draw(g);
     }
-
-    private static void drawCloud(Graphics2D g) {
-        c1.draw(g);
-        c2.draw(g);
+    private void drawHay(Graphics2D g){
+        // hay
+        g.setColor(new Color(222, 191, 53));
+        g.fillOval(170, 180, 250, 250);
+        g.setColor(new Color(91, 61, 42));
+        g.fillRect(280, 180, 5, 200);
+        g.fillRect(300, 180, 5, 200);
     }
 
-
-    private static void drawLeafTree(Graphics2D g) {
+    private void drawTree(Graphics2D g) {
         t1.draw(g);
         t2.draw(g);
     }
+
+
 
 
 
