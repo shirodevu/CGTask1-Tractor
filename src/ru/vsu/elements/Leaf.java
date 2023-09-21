@@ -9,8 +9,6 @@ import java.util.Random;
 
 public class Leaf implements Element, Movable {
     static final Random random = new Random();
-    private static final Color DEFAULT_TREE_COLOR = new Color(78, 128 + random.nextInt(50), 48 + random.nextInt(50));
-    private static final int DEFAULT_APPLES_COUNT = 100;
     private int x;
     private int y;
     private final int leafR;

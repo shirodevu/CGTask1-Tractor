@@ -11,7 +11,7 @@ public class LeafTree implements Tree {
     private static final Color DEFAULT_CROWN_COLOR = new Color(102, 168, 82);
     private static final Color DEFAULT_LEAF_COLOR = new Color(46, 119, 22);
     private static final Color DEFAULT_TRUNK_COLOR = new Color(112, 55, 55);
-    private static final int DEFAULT_APPLES_COUNT = 100;
+    private static final int DEFAULT_APPLES_COUNT = 500;
     private int x;
     private int y;
     private final int treeCrownR;
@@ -76,10 +76,10 @@ public class LeafTree implements Tree {
         Color previousColor = g.getColor();
 
         g.setColor(trunkColor);
-        g.fillRect(x - (treeCrownR / 2) - 10, y + treeCrownR - 10, trunkSize, trunkSize * 3);
+        g.fillRect(x - treeCrownR / 2, y + treeCrownR - 10, trunkSize * 2, trunkSize * 4);
 
         g.setColor(treeCrownColor);
-        g.fillOval(x - treeCrownR, y - treeCrownR, treeCrownR, treeCrownR + treeCrownR);
+        g.fillOval(x - treeCrownR - 10, y - treeCrownR + 10, treeCrownR * 2, treeCrownR * 2);
 
         for (Leaf leaf : leaves) {
             leaf.draw(g);

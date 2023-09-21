@@ -2,8 +2,10 @@ package ru.vsu;
 
 import ru.vsu.elements.Apple;
 import ru.vsu.elements.AppleTree;
+import ru.vsu.elements.Leaf;
 
 import java.awt.*;
+import java.util.List;
 import java.util.Random;
 
 public class AppleUtils {

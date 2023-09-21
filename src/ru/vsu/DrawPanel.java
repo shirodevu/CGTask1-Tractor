@@ -42,7 +42,7 @@ public class DrawPanel extends JPanel implements ActionListener {
 		w3 = new Wheel(495, 420, 50, 15);
 		w4 = new Wheel(680, 430, 40, 10);
 
-		trees.add(new AppleTree(800, 190, 60, 10, 20));
+		trees.add(new AppleTree(800, 190, 70, 10, 20));
 		trees.add(new LeafTree(120, 220, 70, 5, 20));
 
 		sun = new Sun(250, 100, 40, 70, 40);
@@ -152,11 +152,11 @@ public class DrawPanel extends JPanel implements ActionListener {
 				.filter(tree -> tree instanceof LeafTree)
 				.count();
 		if (appleTreesCount < leafTreesCount) {
-			return new AppleTree(900, 190, 60, 10, 20);
+			return new AppleTree(900, 190 + random.nextInt(50), 70, 10, 20);
 		} else if (appleTreesCount > leafTreesCount) {
-			return new LeafTree(900, 220, 70, 5, 20);
+			return new LeafTree(900, 220 + random.nextInt(50), 60, 5, 20);
 		} else {
-			return new AppleTree(900, 190, 60, 10, 20);
+			return new AppleTree(900, 190 + random.nextInt(50), 60, 10, 20);
 		}
 	}
 }

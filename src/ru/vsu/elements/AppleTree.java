@@ -11,7 +11,7 @@ public class AppleTree implements Tree {
     private static final Color DEFAULT_CROWN_COLOR = new Color(102, 168, 82);
     private static final Color DEFAULT_APPLE_COLOR = new Color(229, 49, 49);
     private static final Color DEFAULT_TRUNK_COLOR = new Color(112, 55, 55);
-    private static final int DEFAULT_APPLES_COUNT = 4;
+    private static final int DEFAULT_APPLES_COUNT = 10;
     private int x;
     private int y;
     private final int treeCrownR;
@@ -72,13 +72,19 @@ public class AppleTree implements Tree {
         return appleColor;
     }
 
+    public List<Apple> getApples() {
+        return apples;
+    }
+
     @Override
     public void draw(Graphics2D g) {
         g.setColor(trunkColor);
         g.fillRect(x - (treeCrownR / 2) - 10, y + treeCrownR - 10, trunkSize, trunkSize * 3);
 
         g.setColor(treeCrownColor);
-        g.fillOval(x - treeCrownR, y - treeCrownR, treeCrownR, treeCrownR + treeCrownR);
+        //g.fillOval(x - treeCrownR, y - treeCrownR, treeCrownR, treeCrownR + treeCrownR);
+        g.fillOval(x - treeCrownR, y - treeCrownR, treeCrownR, treeCrownR * 2);
+        // g.fillArc(x - treeCrownR, y - treeCrownR, treeCrownR, treeCrownR + treeCrownR, 0, 360);
 
         for (Apple apple : apples) {
             apple.draw(g);
