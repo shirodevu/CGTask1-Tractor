@@ -22,9 +22,12 @@ public class LeafUtils {
         for (int i = 0; i < leafCount; i++) {
             int leafX = crownStartX + random.nextInt(crownR);
             int leafY = crownStartY + random.nextInt(crownR);
+            double rotation = random.nextInt(50);
             Color leafColor = new Color(78, 128 + random.nextInt(50), 48 + random.nextInt(50));
-            tree.addLeaf(new Leaf(leafX, leafY, leafR, leafColor));
+            tree.addLeaf(new Leaf(leafX, leafY, leafR, leafColor, rotation, crownR));
         }
 
     }
-}
+
+    }
+

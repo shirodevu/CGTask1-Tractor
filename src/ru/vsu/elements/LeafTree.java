@@ -1,20 +1,19 @@
 package ru.vsu.elements;
 
 import ru.vsu.LeafUtils;
+import ru.vsu.logic.Tree;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ru.vsu.elements.Leaf.random;
-
-public class LeafTree implements SomeTree {
+public class LeafTree implements Tree {
     private static final Color DEFAULT_CROWN_COLOR = new Color(102, 168, 82);
     private static final Color DEFAULT_LEAF_COLOR = new Color(46, 119, 22);
     private static final Color DEFAULT_TRUNK_COLOR = new Color(112, 55, 55);
     private static final int DEFAULT_APPLES_COUNT = 100;
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
     private final int treeCrownR;
     private int leafR;
     private final int trunkSize; //пеньки квадраты
@@ -41,12 +40,24 @@ public class LeafTree implements SomeTree {
         this.leaves.add(leaf);
     }
 
+    @Override
     public int getX() {
         return x;
     }
 
+    @Override
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
     public int getY() {
         return y;
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getTreeCrownR() {
@@ -58,13 +69,12 @@ public class LeafTree implements SomeTree {
     }
 
 
-    public Color getLeafColor() {
-        return leafColor;
-    }
 
 
     @Override
     public void draw(Graphics2D g) {
+        Color previousColor = g.getColor();
+
         g.setColor(trunkColor);
         g.fillRect(x - (treeCrownR / 2) - 10, y + treeCrownR - 10, trunkSize, trunkSize * 3);
 
@@ -72,18 +82,18 @@ public class LeafTree implements SomeTree {
         g.fillOval(x - treeCrownR, y - treeCrownR, treeCrownR, treeCrownR + treeCrownR);
 
         for (Leaf leaf : leaves) {
-            double someNum = random.nextInt(50);
-            g.rotate(Math.toRadians(someNum), leaf.getX(), leaf.getY());
             leaf.draw(g);
-            g.rotate(-Math.toRadians(someNum), leaf.getX(), leaf.getY());
-
-            // g.rotate(Math.toRadians(100));
-
         }
+
+        g.setColor(previousColor);
     }
 
     @Override
-    public void move(double dx) {
-
+    public void move(int dx, int dy) {
+        x += dx;
+        y += dy;
+        for (Leaf leaf : leaves) {
+            leaf.move(dx, dy);
+        }
     }
 }

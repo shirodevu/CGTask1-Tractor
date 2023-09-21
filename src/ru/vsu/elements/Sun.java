@@ -1,15 +1,37 @@
 package ru.vsu.elements;
 
+import ru.vsu.logic.Element;
+
 import java.awt.*;
 
-public class Sun {
+public class Sun implements Element {
     private static final Color DEFAULT_SUN_COLOR = new Color(241, 162, 47);
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
     private final int r;
     private final int R;
     private final int count;
     private final Color sunColor;
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y = y;
+    }
 
     public Sun(int x, int y, int r, int R, int count) {
         this.x = x;

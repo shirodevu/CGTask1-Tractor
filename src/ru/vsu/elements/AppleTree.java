@@ -1,18 +1,19 @@
 package ru.vsu.elements;
 
 import ru.vsu.AppleUtils;
+import ru.vsu.logic.Tree;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppleTree implements SomeTree{
+public class AppleTree implements Tree {
     private static final Color DEFAULT_CROWN_COLOR = new Color(102, 168, 82);
     private static final Color DEFAULT_APPLE_COLOR = new Color(229, 49, 49);
     private static final Color DEFAULT_TRUNK_COLOR = new Color(112, 55, 55);
     private static final int DEFAULT_APPLES_COUNT = 4;
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
     private final int treeCrownR;
     private int appleR;
     private final int trunkSize; //пеньки квадраты
@@ -39,12 +40,24 @@ public class AppleTree implements SomeTree{
         this.apples.add(apple);
     }
 
+    @Override
     public int getX() {
         return x;
     }
 
+    @Override
     public int getY() {
         return y;
+    }
+
+    @Override
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getTreeCrownR() {
@@ -73,7 +86,11 @@ public class AppleTree implements SomeTree{
     }
 
     @Override
-    public void move(double dx) {
-
+    public void move(int dx, int dy) {
+        x += dx;
+        y += dy;
+        for (Apple apple : apples) {
+            apple.move(dx, dy);
+        }
     }
 }

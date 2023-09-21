@@ -8,6 +8,6 @@ public class Main {
         mw.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         mw.setSize(900, 600);
         mw.setVisible(true);
-
+        mw.setResizable(false);
     }
 }

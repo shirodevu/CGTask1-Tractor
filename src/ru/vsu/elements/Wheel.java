@@ -1,8 +1,10 @@
 package ru.vsu.elements;
 
+import ru.vsu.logic.Element;
+
 import java.awt.*;
 
-public class Wheel {
+public class Wheel implements Element {
     private static final Color DEFAULT_TIRE_COLOR = new Color(0,0,0);
     private static final Color DEFAULT_DISK_COLOR = new Color(66,66,66);
     private static final Color DEFAULT_RING_COLOR = new Color(158,158,158);

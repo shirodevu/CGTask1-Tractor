@@ -1,9 +1,10 @@
 package ru.vsu.elements;
 
-import java.awt.*;
-import java.util.List;
+import ru.vsu.logic.Movable;
 
-public class Cloud {
+import java.awt.*;
+
+public class Cloud implements Movable {
     private static final Color DEFAULT_CLOUD_COLOR = new Color(250, 238, 238);
     private int x;
     private int y;
@@ -21,7 +22,7 @@ public class Cloud {
 
     public void draw(Graphics2D g) {
         g.setColor(cloudColor);
-        g.fillOval(x - 2 * width, y - height, width, height);
+        g.fillOval(x, y - height, width, height);
     }
 
     public int getX() {
@@ -62,5 +63,11 @@ public class Cloud {
 
     public void setCloudColor(Color cloudColor) {
         this.cloudColor = cloudColor;
+    }
+
+    @Override
+    public void move(int dx, int dy) {
+        x += dx;
+        y += dy;
     }
 }
