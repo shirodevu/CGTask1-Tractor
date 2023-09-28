@@ -50,7 +50,10 @@ public class DrawPanel extends JPanel implements ActionListener {
 
 	private static void drawBackground(Graphics2D g) {
 		// sky
-		g.setColor(new Color(165, 221, 238));
+		g.setPaint(new LinearGradientPaint(0, 0, 900, 300,
+				new float[] {0.1f, 0.9f},
+				new Color[] {new Color(98, 176, 203), new Color(95, 202, 250)}));
+		//g.setColor(new Color(165, 221, 238));
 		g.fillRect(0, 0, 900, 300);
 		// grass
 		g.setColor(new Color(118, 200, 91));
@@ -140,8 +143,8 @@ public class DrawPanel extends JPanel implements ActionListener {
 		return new Cloud(
 				900,
 				100 + random.nextInt(100),
-				160 + random.nextInt(50),
-				100 + random.nextInt(50));
+				140 + random.nextInt(50),
+				80 + random.nextInt(50));
 	}
 
 	private Tree treeFactory() {
@@ -152,7 +155,7 @@ public class DrawPanel extends JPanel implements ActionListener {
 				.filter(tree -> tree instanceof LeafTree)
 				.count();
 		if (appleTreesCount < leafTreesCount) {
-			return new AppleTree(900, 190 + random.nextInt(50), 70, 10, 20);
+			return new AppleTree(900, 190 + random.nextInt(50), 60, 10, 20);
 		} else if (appleTreesCount > leafTreesCount) {
 			return new LeafTree(900, 220 + random.nextInt(50), 60, 5, 20);
 		} else {

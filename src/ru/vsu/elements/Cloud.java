@@ -23,6 +23,8 @@ public class Cloud implements Movable {
     public void draw(Graphics2D g) {
         g.setColor(cloudColor);
         g.fillOval(x, y - height, width, height);
+        g.fillOval(x - 40, y - height / 2, width - 40, height / 2);
+        g.fillOval(x + 80, y - height / 2, width - 40, height / 2);
     }
 
     public int getX() {
