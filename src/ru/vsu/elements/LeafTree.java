@@ -60,6 +60,12 @@ public class LeafTree implements Tree {
         this.y = y;
     }
 
+    @Override
+    public int getCrownR() {
+        return treeCrownR;
+    }
+
+    @Override
     public int getTreeCrownR() {
         return treeCrownR;
     }

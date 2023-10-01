@@ -60,6 +60,12 @@ public class AppleTree implements Tree {
         this.y = y;
     }
 
+    @Override
+    public int getCrownR() {
+        return treeCrownR;
+    }
+
+    @Override
     public int getTreeCrownR() {
         return treeCrownR;
     }
@@ -79,10 +85,10 @@ public class AppleTree implements Tree {
     @Override
     public void draw(Graphics2D g) {
         g.setColor(trunkColor);
-        g.fillRect(x - treeCrownR / 2, y + treeCrownR - 10, trunkSize * 2, trunkSize * 4);
+        g.fillRect(x - treeCrownR / 2 + 10, y + treeCrownR - 10, trunkSize * 2, trunkSize * 4);
 
         g.setColor(treeCrownColor);
-        g.fillOval(x - treeCrownR - 10, y - treeCrownR + 10, treeCrownR * 2, treeCrownR * 2);
+        g.fillOval(x - treeCrownR, y - treeCrownR, treeCrownR * 2, treeCrownR * 2);
 
         for (Apple apple : apples) {
             apple.draw(g);

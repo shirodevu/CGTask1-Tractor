@@ -52,7 +52,7 @@ public class DrawPanel extends JPanel implements ActionListener {
 		// sky
 		g.setPaint(new LinearGradientPaint(0, 0, 900, 300,
 				new float[] {0.1f, 0.9f},
-				new Color[] {new Color(98, 176, 203), new Color(95, 202, 250)}));
+				new Color[] {new Color(112, 201, 231), new Color(84, 167, 204)}));
 		//g.setColor(new Color(165, 221, 238));
 		g.fillRect(0, 0, 900, 300);
 		// grass
@@ -100,7 +100,7 @@ public class DrawPanel extends JPanel implements ActionListener {
 	private void processClouds() {
 		for (Iterator<Cloud> iterator = clouds.iterator(); iterator.hasNext(); ) {
 			Cloud cloud = iterator.next();
-			if (cloud.getX() + cloud.getWidth() < 0) {
+			if (cloud.getX() + cloud.getWidth() +  cloud.getWidth() / 2 < 0) {
 				iterator.remove();
 				clouds.add(cloudFactory());
 			}
@@ -110,7 +110,7 @@ public class DrawPanel extends JPanel implements ActionListener {
 	private void processTrees() {
 		for (Iterator<Tree> iterator = trees.iterator(); iterator.hasNext(); ) {
 			Tree tree = iterator.next();
-			if (tree.getX() < 0) {
+			if (tree.getX() + tree.getTreeCrownR() < 0) {
 				iterator.remove();
 				trees.add(treeFactory());
 			}
